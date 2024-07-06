@@ -1,0 +1,75 @@
+<main>
+
+  <div class="conteudo">
+    <!--Carrossel de informações-->
+    <div class="carrossel">
+      <div class="carrossel-imagens">
+        <img src="/imagens/homem-lendo.jpg" alt="imagem" class="slider" />
+        <img src="/imagens/mulher-lendo.jpg" alt="imagem" class="slider" />
+        <img src="/imagens/mulher-lendo2.jpg" alt="imagem" class="slider" />
+      </div>
+
+      <div class="carrossel-btn">
+        <button id="prev-button">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="next-button">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <!--Fim Carrossel de informações-->
+
+    <!--container-->
+
+    <h1>Destaques</h1>
+
+    <div class="container">
+      {{#each destaques}}
+      <div class="conteiner-livros">
+        <img src="{{this.imagem}}" alt="Imagem do livro" />
+        <h2>{{this.titulo}}</h2>
+        <h4>{{this.autor}}</h4>
+        <div class="content">
+          <a href="/livro/{{this.id}}">Comprar</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
+    <!--fim conatainer-->
+
+    <div class="btn-decubra-mais">
+      <a href="/categoria">DESCUBRA MAIS LIVROS</a>
+    </div>
+
+    <div class="faixa-propaganda">Propagandas..</div>
+
+    <h1>Escolha o seu livro!</h1>
+
+    <div class="container-genero">
+      <div class="genero-imagem">
+        <img src="/imagens/drama.jpg" alt="livro" />
+        <a href="/categoria">Drama</a>
+      </div>
+
+      <div class="genero-imagem">
+        <img src="/imagens/ficção1.webp" alt="livro" />
+        <a href="/categoria">Ficção</a>
+      </div>
+
+      <div class="genero-imagem">
+        <img src="/imagens/romance.jpg" alt="livro" />
+        <a href="/categoria">Romance</a>
+      </div>
+
+      <div class="genero-imagem">
+        <img src="/imagens/misterio.jpg" alt="livro" />
+        <a href="/categoria">Mistérios</a>
+      </div>
+    </div>
+
+    <div></div>
+  </div>
+
+</main>

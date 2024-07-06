@@ -1,0 +1,32 @@
+<header>
+  <!--barra de navegação-->
+  <div class="header">
+    <div class="navbar">
+      <div class="logo">
+        <!--<img src="./Bookstore-logo.png" alt="logo" />-->
+        <h1>Book Store</h1>
+        <h3>TROCA & VENDAS</h3>
+      </div>
+
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/categoria">Categoria</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+
+      <div class="nav-busca">
+        <input type="text" placeholder="Buscar..." />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <div class="nav-login">
+      <form action="/logout" method="post">
+        <button type="submit" class="logout">Deslogar</button>
+      </form>
+      {{#each user.books}}
+      <p><strong>Nome:</strong> {{user.nome}} {{user.sobrenome}}</p>
+      {{/each}}
+    </div>
+  </div>
+</header>
