@@ -60,6 +60,12 @@ app.use(
   })
 );
 
+// Middleware para definir o usuário localmente
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 // Verificando e criando o diretório para as imagens dos livros, se necessário
 const imgDir = path.join(__dirname, "public", "imagens", "livros");
 if (!fs.existsSync(imgDir)) {
@@ -368,7 +374,7 @@ app.post("/logout", (req, res) => {
       res.status(500).send("Erro ao deslogar");
       return;
     }
-    res.redirect("/login");
+    res.redirect("/");
   });
 });
 
@@ -449,11 +455,12 @@ app.get("/informacoes/:id", (req, res) => {
 
 // Rota protegida para negociação
 app.get("/negociar", checkAuth, (req, res) => {
-  res.send("Página de negociação. Usuário logado.");
+  const whatsappNumber = req.session.user.whatsapp; // Assumindo que o número do WhatsApp está no objeto req.session.user
+  res.redirect(`https://wa.me/55${whatsappNumber}`);
 });
 
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

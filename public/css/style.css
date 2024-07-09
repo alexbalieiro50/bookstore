@@ -7,11 +7,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  width: 100vw;
-  height: 100vh;
-}
-
 .conteudo {
   width: 100%;
   display: flex;
@@ -85,6 +80,7 @@ body {
   align-items: center;
   color: #ffffff;
   font-size: 8pt;
+  margin-left: 15px;
 }
 
 .header {
@@ -103,7 +99,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #388e3c;
+  background-color: #005f5f;
+  padding: 5px;
+}
+
+.nav-login button {
+  color: #fff;
+  font-size: 15pt;
+  background-color: transparent;
+  border: none;
+  margin-right: 15px;
+}
+
+.nav-login a,
+p {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-login p {
+  margin-left: 15px;
 }
 
 /* fim navbar */
@@ -173,8 +188,9 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Estilo dos livros em destaque */
@@ -382,6 +398,8 @@ body {
 
 .imagem-livro img {
   max-width: 600px;
+  max-height: 600px;
+
   border-radius: 8px;
   transition: transform 0.3s ease;
 }
@@ -723,13 +741,13 @@ a {
   gap: 10px;
   margin-top: 10px;
 }
-
+/*
 button {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
-  width: 100px; /* Largura fixa para todos os botões */
+  width: 100px; /* Largura fixa para todos os botões 
   background-color: #008184;
   color: #fff;
   border: none;
@@ -767,7 +785,7 @@ button.logout {
 button.logout:hover {
   background-color: #e5533d;
 }
-
+*/
 /* Adicionar Livro */
 .container-adicionar-livro {
   display: flex;
@@ -814,7 +832,7 @@ button.logout:hover {
   border-radius: 5px;
   font-size: 16px;
 }
-
+/*
 button {
   padding: 10px 20px;
   background-color: #008184;
@@ -829,7 +847,7 @@ button {
 button:hover {
   background-color: #005f5f;
 }
-
+*/
 /*fim adicionar livro*/
 
 .editar-livro {
@@ -956,12 +974,13 @@ button:hover {
 .container-categoria-livros {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-around;
+  gap: 10px;
+  justify-content: start;
+  align-items: center;
 }
 
 .container-livros {
-  width: 30%;
+  width: 250px;
   background-color: #f9f9f9;
   border-radius: 5px;
   padding: 10px;

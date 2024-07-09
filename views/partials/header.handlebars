@@ -5,14 +5,18 @@
       <div class="logo">
         <!--<img src="./Bookstore-logo.png" alt="logo" />-->
         <h1>Book Store</h1>
-        <h3>TROCA & VENDAS</h3>
+        <h3>Troca & Venda de Livros</h3>
       </div>
 
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/categoria">Categoria</a></li>
         <li><a href="#">Sobre</a></li>
+        {{#if user}}
+        <li><a href="/"></a></li>
+        {{else}}
         <li><a href="/login">Login</a></li>
+        {{/if}}
       </ul>
 
       <div class="nav-busca">
@@ -20,13 +24,20 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
+    {{#if user}}
     <div class="nav-login">
+
+      <div class="nome-usuario">
+        <p><strong>Bem-vindo,</strong><a href="/usuario"> {{user.nome}} {{user.sobrenome}}</a></p>
+
+        {{#each user.books}}
+        <!-- Renderizar os livros do usuário aqui -->
+        {{/each}}
+      </div>
       <form action="/logout" method="post">
-        <button type="submit" class="logout">Deslogar</button>
+        <button type="submit">Sair</button>
       </form>
-      {{#each user.books}}
-      <p><strong>Nome:</strong> {{user.nome}} {{user.sobrenome}}</p>
-      {{/each}}
     </div>
+    {{/if}}
   </div>
 </header>
