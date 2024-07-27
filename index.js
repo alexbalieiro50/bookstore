@@ -247,6 +247,19 @@ app.post("/adicionar-livro", checkAuth, upload.single("imagem"), (req, res) => {
   );
 });
 
+// Rota para exibir todos os livros
+app.get("/livros_all", (req, res) => {
+  const sql = "SELECT * FROM books";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Erro ao buscar livros:", err);
+      res.status(500).send("Erro ao buscar livros");
+      return;
+    }
+    res.render("livros", { livros: results });
+  });
+});
+
 // Rota para renderizar o formulário de edição de livro (protegida)
 app.get("/editar-livro/:id", checkAuth, (req, res) => {
   const id = req.params.id;
@@ -324,6 +337,19 @@ app.post(
   }
 );
 
+// Rota para exibir todos os livros
+app.get("/livros", (req, res) => {
+  const sql = "SELECT * FROM books";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Erro ao buscar livros:", err);
+      res.status(500).send("Erro ao buscar livros");
+      return;
+    }
+    res.render("livros", { livros: results });
+  });
+});
+
 // Rota para remover livro (protegida)
 app.post("/remover-livro/:id", checkAuth, (req, res) => {
   const livroId = req.params.id;
@@ -398,7 +424,22 @@ app.get("/livro/:id", (req, res) => {
       return;
     }
     const livro = results[0];
-    res.render("informacoes", { livro });
+
+    // Buscar livros relacionados na mesma categoria, exceto o atual
+    const sqlRelacionados =
+      "SELECT * FROM books WHERE categoria = ? AND id != ? LIMIT 5";
+    db.query(
+      sqlRelacionados,
+      [livro.categoria, livroId],
+      (err, relacionados) => {
+        if (err) {
+          console.error("Erro ao buscar livros relacionados:", err);
+          res.status(500).send("Erro ao buscar livros relacionados");
+          return;
+        }
+        res.render("informacoes", { livro, destaques: relacionados });
+      }
+    );
   });
 });
 
@@ -434,29 +475,65 @@ app.get("/categoria", (req, res) => {
   });
 });
 
-app.get("/informacoes/:id", (req, res) => {
-  const id = req.params.id;
-  const sql = "SELECT * FROM books WHERE id = ?";
-  db.query(sql, [id], (err, result) => {
-    if (err) {
-      console.error("Erro ao buscar informações do livro:", err);
-      res.status(500).send("Erro ao buscar informações do livro");
-      return;
-    }
-
-    if (result.length === 0) {
-      res.status(404).send("Livro não encontrado");
-      return;
-    }
-
-    res.render("informacoes", { livro: result[0] });
-  });
-});
-
 // Rota protegida para negociação
 app.get("/negociar", checkAuth, (req, res) => {
   const whatsappNumber = req.session.user.whatsapp; // Assumindo que o número do WhatsApp está no objeto req.session.user
   res.redirect(`https://wa.me/55${whatsappNumber}`);
+});
+
+// Rota para exibir o formulário de edição de dados do usuário (protegida)
+app.get("/editar-usuario", checkAuth, (req, res) => {
+  res.render("editar_usuario", { user: req.session.user });
+});
+
+// Rota para processar o formulário de edição de dados do usuário (protegida)
+app.post("/editar-usuario", checkAuth, async (req, res) => {
+  const {
+    nome,
+    sobrenome,
+    email,
+    telefone,
+    whatsapp,
+    password,
+    confirma_password,
+  } = req.body;
+  const userId = req.session.user.id;
+
+  // Verifica se as senhas coincidem (se foram preenchidas)
+  if (password && password !== confirma_password) {
+    return res.status(400).send("As senhas não coincidem");
+  }
+
+  // Atualizar dados no banco de dados
+  let sql =
+    "UPDATE users SET nome = ?, sobrenome = ?, email = ?, telefone = ?, whatsapp = ?";
+  const values = [nome, sobrenome, email, telefone, whatsapp];
+
+  if (password) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    sql += ", password = ?";
+    values.push(hashedPassword);
+  }
+
+  sql += " WHERE id = ?";
+  values.push(userId);
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("Erro ao atualizar dados do usuário:", err);
+      res.status(500).send("Erro ao atualizar dados do usuário");
+      return;
+    }
+
+    // Atualiza os dados do usuário na sessão
+    req.session.user.nome = nome;
+    req.session.user.sobrenome = sobrenome;
+    req.session.user.email = email;
+    req.session.user.telefone = telefone;
+    req.session.user.whatsapp = whatsapp;
+
+    res.redirect("/usuario");
+  });
 });
 
 // Iniciando o servidor

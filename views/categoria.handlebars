@@ -24,12 +24,12 @@
                 <h2>{{@key}}</h2>
                 <div class="container-categoria-livros">
                     {{#each this}}
-                    <div class="container-livros">
+                    <div class="livros-categoria">
                         <img src="{{imagem}}" alt="livro" />
                         <h2>{{titulo}}</h2>
                         <h4>{{autor}}</h4>
                         <div class="content">
-                            <a href="/informacoes/{{id}}">Comprar</a>
+                            <a href="/livro/{{id}}">Comprar</a>
                         </div>
                     </div>
                     {{/each}}
@@ -38,6 +38,4 @@
             {{/each}}
         </section>
     </div>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </main>

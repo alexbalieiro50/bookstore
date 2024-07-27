@@ -5,8 +5,8 @@
             <form action="/adicionar-livro" method="get">
                 <button type="submit" class="adicionar">Adicionar Livro</button>
             </form>
-            <form action="/logout" method="post">
-                <button type="submit" class="logout">Deslogar</button>
+            <form action="/editar-usuario" method="get">
+                <button type="submit" class="editar-dados">Editar meus Dados</button>
             </form>
         </div>
 
@@ -18,10 +18,10 @@
                     <img src="{{this.imagem}}" alt="Imagem do livro">
                     <h3>{{this.titulo}}</h3>
                     <h4>Autor: {{this.autor}}</h4>
-                    <p>Editora: {{this.editora}}</p>
-                    <p>Ano: {{this.ano}}</p>
-                    <p>Número de Páginas: {{this.paginas}}</p>
-                    <p>Estado: {{this.estado}}</p>
+                    <p><strong>Editora:</strong> {{this.editora}}</p>
+                    <p><strong>Ano:</strong> {{this.ano}}</p>
+                    <p><strong>Número de Páginas:</strong> {{this.paginas}}</p>
+                    <p><strong>Estado:</strong> {{this.estado}}</p>
                     <div class="acoes">
                         <form action="/editar-livro/{{this.id}}" method="get">
                             <button type="submit" class="editar">Editar</button>

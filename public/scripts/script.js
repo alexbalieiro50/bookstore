@@ -45,3 +45,5 @@ document.addEventListener("DOMContentLoaded", function () {
   // Mostrar o primeiro slider ao carregar a página
   showSlider();
 });
+
+
