@@ -11,7 +11,7 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/categoria">Categoria</a></li>
-        <li><a href="#">Sobre</a></li>
+        <li><a href="/sobre">Sobre</a></li>
         {{#if user}}
         <li><a href="/"></a></li>
         {{else}}
@@ -29,7 +29,7 @@
     <div class="nav-login">
       {{#if user}}
       <div class="nome-usuario">
-        <p><strong>Bem-vindo,</strong><a href="/usuario"> {{user.nome}} {{user.sobrenome}}</a></p>
+        <p><strong>Bem-vindo,</strong><a href="/usuario">      {{user.nome}} {{user.sobrenome}}</a></p>
 
         {{#each user.books}}
         <!-- Renderizar os livros do usuário aqui -->

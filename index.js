@@ -57,6 +57,7 @@ app.use(
     secret: "seu_segredo",
     resave: false,
     saveUninitialized: true,
+    cookie: { secure: false }, // Use 'true' se estiver usando HTTPS
   })
 );
 
@@ -94,14 +95,25 @@ function checkAuth(req, res, next) {
 
 // Rota principal
 app.get("/", (req, res) => {
-  const sql = "SELECT * FROM books WHERE destaque = 1";
-  db.query(sql, (err, results) => {
+  const sqlDestaques = "SELECT * FROM books WHERE destaque = 1";
+  const sqlTodosLivros = "SELECT * FROM books";
+
+  db.query(sqlDestaques, (err, destaques) => {
     if (err) {
       console.error("Erro ao buscar livros em destaque:", err);
       res.status(500).send("Erro ao buscar livros em destaque");
       return;
     }
-    res.render("index", { destaques: results });
+
+    db.query(sqlTodosLivros, (err, todosLivros) => {
+      if (err) {
+        console.error("Erro ao buscar todos os livros:", err);
+        res.status(500).send("Erro ao buscar todos os livros");
+        return;
+      }
+
+      res.render("index", { destaques: destaques, all_books: todosLivros });
+    });
   });
 });
 
@@ -160,13 +172,11 @@ app.post("/login", (req, res) => {
   db.query(sql, [email], async (err, results) => {
     if (err) {
       console.error("Erro ao buscar usuário no banco de dados:", err);
-      res.status(500).send("Erro ao fazer login");
-      return;
+      return res.render("tela_login", { error: "Erro ao fazer login. Tente novamente mais tarde." });
     }
 
     if (results.length === 0) {
-      res.status(400).send("Usuário não encontrado");
-      return;
+      return res.render("tela_login", { error: "Usuário não encontrado." });
     }
 
     const user = results[0];
@@ -176,12 +186,14 @@ app.post("/login", (req, res) => {
     if (match) {
       // Configura a sessão do usuário
       req.session.user = user;
-      res.redirect("/usuario");
+      return res.redirect("/usuario");
     } else {
-      res.status(400).send("Senha incorreta");
+      return res.render("tela_login", { error: "Senha incorreta." });
     }
   });
 });
+
+
 
 // Rota para a tela do usuário (protegida)
 app.get("/usuario", checkAuth, (req, res) => {
@@ -245,19 +257,6 @@ app.post("/adicionar-livro", checkAuth, upload.single("imagem"), (req, res) => {
       res.redirect("/usuario");
     }
   );
-});
-
-// Rota para exibir todos os livros
-app.get("/livros_all", (req, res) => {
-  const sql = "SELECT * FROM books";
-  db.query(sql, (err, results) => {
-    if (err) {
-      console.error("Erro ao buscar livros:", err);
-      res.status(500).send("Erro ao buscar livros");
-      return;
-    }
-    res.render("livros", { livros: results });
-  });
 });
 
 // Rota para renderizar o formulário de edição de livro (protegida)
@@ -535,6 +534,12 @@ app.post("/editar-usuario", checkAuth, async (req, res) => {
     res.redirect("/usuario");
   });
 });
+
+// Rota para tela "Sobre"
+app.get("/sobre", (req, res) => {
+  res.render("tela_sobre");
+});
+
 
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;

@@ -1,3 +1,4 @@
+<!-- views/index.handlebars -->
 <main>
   <div class="conteudo">
     <!--Carrossel de informações-->
@@ -7,7 +8,6 @@
         <img src="/imagens/mulher-lendo.jpg" alt="imagem" class="slider" />
         <img src="/imagens/mulher-lendo2.jpg" alt="imagem" class="slider" />
       </div>
-
       <div class="carrossel-btn">
         <button id="prev-button">
           <i class="fa-solid fa-chevron-left"></i>
@@ -19,10 +19,9 @@
     </div>
     <!--Fim Carrossel de informações-->
 
-    <!--Container dos Destaques-->
-    <h1>Destaques</h1>
+    <!-- Todos os livros -->
     <div class="container">
-      {{#each destaques}}
+      {{#each all_books}}
       <div class="conteiner-livros">
         <img src="{{this.imagem}}" alt="Imagem do livro" />
         <h2>{{this.titulo}}</h2>
@@ -33,7 +32,6 @@
       </div>
       {{/each}}
     </div>
-    <!--Fim Container dos Destaques-->
 
     <div class="btn-decubra-mais">
       <a href="/categoria">DESCUBRA MAIS LIVROS</a>
@@ -42,7 +40,6 @@
     <div class="faixa-propaganda">
       <h2>Explore Livros Únicos</h2>
       <h5>Encontre, troque e venda livros de forma simples e divertida</h5>
-
       <div class="banners">
         <div class="conteudo-banner">
           <img src="/imagens/banner1.jpeg" alt="">
@@ -110,46 +107,29 @@
   </div>
 
   <div class="plano-de-fundo">
-    <h1>texto</h1>
+    <h1> Como Aproveitar ao Máximo a Leitura de Livros</h1>
+    <h4>Escolhendo o Livro Certo</h4>
+    <p>A escolha do livro é o primeiro passo para uma experiência de leitura agradável e<br>
+     enriquecedora. Considere seus interesses pessoais, recomendações de amigos e críticas<br>
+     literárias. Se estiver em dúvida, explore diferentes gêneros para descobrir novos favoritos.<br>
+     Em nossa plataforma, você encontrará resenhas e avaliações que podem  ajudar na escolha.</p>
   </div>
 
-  <div class="container">
-    {{#each destaques}}
-    <div class="conteiner-livros">
-      <img src="{{this.imagem}}" alt="Imagem do livro" />
-      <h2>{{this.titulo}}</h2>
-      <h4>{{this.autor}}</h4>
-      <div class="content">
-        <a href="/livro/{{this.id}}">Comprar</a>
+  <!--Container dos Destaques-->
+  <div class="container-destaques">
+    <h1>Destaques</h1>
+    <div class="container">
+      {{#each destaques}}
+      <div class="conteiner-livros">
+        <img src="{{this.imagem}}" alt="Imagem do livro" />
+        <h2>{{this.titulo}}</h2>
+        <h4>{{this.autor}}</h4>
+        <div class="content">
+          <a href="/livro/{{this.id}}">Comprar</a>
+        </div>
       </div>
+      {{/each}}
     </div>
-    {{/each}}
   </div>
-
-   <div class="container">
-    {{#each destaques}}
-    <div class="conteiner-livros">
-      <img src="{{this.imagem}}" alt="Imagem do livro" />
-      <h2>{{this.titulo}}</h2>
-      <h4>{{this.autor}}</h4>
-      <div class="content">
-        <a href="/livro/{{this.id}}">Comprar</a>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-
-   <div class="container">
-    {{#each destaques}}
-    <div class="conteiner-livros">
-      <img src="{{this.imagem}}" alt="Imagem do livro" />
-      <h2>{{this.titulo}}</h2>
-      <h4>{{this.autor}}</h4>
-      <div class="content">
-        <a href="/livro/{{this.id}}">Comprar</a>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-
+  <!--Fim Container dos Destaques-->
 </main>
