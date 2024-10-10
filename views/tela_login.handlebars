@@ -1,11 +1,14 @@
 <main>
   <div class="container-login">
     <div class="imagem-login">
-      <img src="/imagens/Telecommuting-pana.png" alt="Imagem de login" />
+      <img src="/imagens/fundo_livro2.webp" alt="Imagem de login" />
     </div>
 
     <div class="container-form-login">
       <h1>Login</h1>
+      {{#if error}}
+        <div class="error-message">{{error}}</div>
+      {{/if}}
       <form action="/login" method="post">
         <div class="input-group">
           <label for="email">E-mail</label>

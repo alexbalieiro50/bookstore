@@ -1,12 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
-  /*font-family: "Poppins", sans-serif;*/
+  box-sizing: border-box;
   font-family: "Inter Tight", sans-serif;
+}
+
+main {
+  width: 100%; /* Alterado de 100vw para 100% */
+  height: 100%;
 }
 
 .conteudo {
@@ -17,6 +22,7 @@
   justify-content: center;
   background-color: #f4f4f4;
   padding-top: 68px;
+  box-sizing: border-box;
 }
 
 /* navbar */
@@ -27,6 +33,7 @@
   background-color: #008184;
   padding: 10px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .navbar ul {
@@ -34,7 +41,6 @@
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  margin-left: 30%;
   padding: 0;
 }
 
@@ -52,11 +58,9 @@
 .nav-busca {
   display: flex;
   align-items: center;
-  width: 250px;
   background-color: #006d70;
   border-radius: 15px;
   padding: 5px 10px;
-  margin-right: 2%;
 }
 
 .nav-busca input {
@@ -72,20 +76,11 @@
 .nav-busca input::placeholder {
   color: #ffffff;
   font-size: 12pt;
-  opacity: 1;
-}
-
-.nav-busca a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  text-decoration: none;
-  margin-left: 10px;
 }
 
 .nav-busca i {
   color: #ffffff;
+  margin-left: 10px;
 }
 
 .logo img {
@@ -130,14 +125,14 @@
   cursor: pointer;
 }
 
-.nav-login a,
-p {
-  text-decoration: none;
+.nav-login p {
+  margin-left: 15px;
   color: #fff;
 }
 
-.nav-login p {
-  margin-left: 15px;
+.nome-usuario a {
+  text-decoration: none;
+  color: #fff;
 }
 
 /* fim navbar */
@@ -167,7 +162,6 @@ p {
   min-width: 100%;
   max-height: 500px; /* Define a altura máxima para as imagens do carrossel */
   object-fit: cover; /* Mantém a proporção das imagens */
-  transition: opacity 0.5s ease-in-out;
 }
 
 .carrossel-btn {
@@ -185,7 +179,6 @@ p {
   color: white;
   padding: 10px;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
 .carrossel-btn button:hover {
@@ -250,6 +243,16 @@ p {
   background-color: #005f5f;
 }
 
+.container-destaques {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-destaques h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 /* Estilos do container de Gêneros */
 .container-genero {
   display: flex;
@@ -284,26 +287,24 @@ p {
 .genero-imagem a:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
 .plano-de-fundo {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.plano-de-fundo {
   height: 40vh;
   background-image: url(../imagens/livrovelho.jpeg);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
   box-shadow: inset 6px 6px 13px rgba(0, 0, 0, 0.3);
 }
 
+.plano-de-fundo p {
+  text-align: justify;
+}
 /* Botão Descubra Mais */
 .btn-decubra-mais a {
   display: inline-block;
@@ -323,7 +324,6 @@ p {
 /* Alinhamento do perfil do usuário */
 .perfil-usuario {
   height: 50vh;
-
   background-color: #f8f8f8;
   padding: 20px;
   border-radius: 8px;
@@ -353,7 +353,6 @@ p {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .perfil-usuario .adicionar:hover,
@@ -412,6 +411,7 @@ p {
   background: rgba(0, 0, 0, 0);
   font-size: 35pt;
 }
+
 /* Fim Genero Imagem */
 
 .faixa-propaganda {
@@ -427,6 +427,7 @@ p {
   margin-bottom: 25px;
   padding: 15px;
 }
+
 .faixa-propaganda h5 {
   font-weight: 300;
   padding: 15px;
@@ -593,12 +594,11 @@ p {
 
 /*login*/
 .container-login {
-  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #006d70;
+  background-color: #fff;
 }
 
 .imagem-login {
@@ -620,8 +620,9 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #f9f9f9;
   margin-right: 170px;
+  border: 1px solid black;
 }
 
 .container-login form {
@@ -630,19 +631,23 @@ p {
   flex-direction: column;
   justify-content: center;
 }
+
 .input-group {
   display: flex;
   flex-direction: column;
 }
+
 .input-group label {
   margin-top: 15px;
 }
+
 .input-group input {
   padding: 10px;
   border: none;
   border-radius: 10px;
-  background-color: #f6f6f6;
+  background-color: #fff;
   outline: none;
+  border: 1px solid black;
 }
 
 .input-group input:hover {
@@ -659,27 +664,29 @@ p {
   background: #006d70;
   cursor: pointer;
 }
+
 .container-form-login h5,
 a {
   margin-top: 25px;
   text-align: center;
   color: #666;
 }
+
 .container-form-login a {
   color: #006d70;
   text-decoration: none;
   margin-left: 8px;
 }
+
 /*fim login*/
 
 /*cadastro*/
 .container-cadastro {
-  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #006d70;
+  background-color: #fff;
   gap: 1rem;
 }
 
@@ -691,6 +698,7 @@ a {
   border-radius: 10px;
   width: 50%;
   height: 80%;
+  margin-top: 5%;
 }
 
 .form-cadastro form {
@@ -698,10 +706,11 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: #f9f9f9;
   border-radius: 10px;
   width: 60%;
   height: 100%;
+  border: 1px solid black;
 }
 
 .form-cadastro button {
@@ -720,6 +729,7 @@ a {
   display: flex;
   flex-direction: column;
 }
+
 .input-group-cad label {
   margin-top: 15px;
 }
@@ -728,7 +738,8 @@ a {
   padding: 10px;
   border-radius: 10px;
   border: none;
-  background-color: #f6f6f6;
+  background-color: #fff;
+  border: 1px solid #000;
   outline: none;
 }
 
@@ -737,16 +748,15 @@ a {
 }
 
 .imagem-cadastro {
-  width: 50%;
   height: 100%;
   background-color: #fff;
-  align-items: center;
-  justify-content: center;
-  display: flex;
 }
+
 .imagem-cadastro img {
-  width: 500px;
+  width: 100%;
+  height: 100%;
 }
+
 /*fim cadastro*/
 
 /* categoria */
@@ -804,6 +814,7 @@ a {
   font-size: 20px;
   margin-bottom: 10px;
 }
+
 /* fim categoria */
 
 /* Container do usuário */
@@ -840,6 +851,7 @@ a {
 .livros-usuario h2 {
   margin: 25px;
 }
+
 .livro-container {
   display: flex;
   flex-wrap: wrap;
@@ -870,6 +882,7 @@ a {
 .livro p {
   color: #000;
 }
+
 .acoes {
   display: flex;
   justify-content: space-around;
@@ -883,14 +896,13 @@ a {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  width: 100px; /* Largura fixa para todos os botões*/
+  width: 100px; /* Largura fixa para todos os botões */
   background-color: #008184;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   margin: 5px 0;
-  transition: background-color 0.3s;
 }
 
 .acoes button:hover {
@@ -947,6 +959,7 @@ a {
   flex-direction: column;
   justify-content: center; /* Centraliza o conteúdo verticalmente */
 }
+
 .group-form-add-livro {
   width: 80%;
   padding: 1.5em;
@@ -1000,20 +1013,37 @@ a {
 .container-adicionar-livro button:hover {
   background-color: #004747;
 }
+
 /*fim adicionar livro*/
 
+/*editar livro*/
+
+.container-editar-livro {
+  display: flex;
+}
+.imagem-form-edit-livro{
+  width: 50%;
+}
+
+.imagem-form-edit-livro img{
+  width: 100%;
+  height: 100%;
+
+}
 .editar-livro {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #f9f9f9;
+  width: 50%;
+  height: 100%;
+
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .editar-livro h2 {
-  margin-top: 450px;
+  margin-top: 5%;
   margin-bottom: 10px;
   font-size: 24px;
   color: #333;
@@ -1056,7 +1086,6 @@ a {
   cursor: pointer;
   border-radius: 5px;
   font-size: 16px;
-  transition: background-color 0.3s;
 }
 
 .editar-livro button:hover {
@@ -1202,6 +1231,7 @@ a {
     padding-right: 10px;
   }
 }
+
 /*fim categoria*/
 
 /*footer*/
@@ -1214,6 +1244,7 @@ a {
   color: #fff;
   height: 20vh;
 }
+
 .footer h4 {
   margin-top: 15px;
 }
@@ -1226,9 +1257,11 @@ a {
   justify-content: center;
   padding: 10px;
 }
+
 .redes-sociais a {
   text-decoration: none;
 }
+
 .fa-brands {
   width: 50px;
   height: 50px;
@@ -1252,6 +1285,7 @@ a {
   justify-content: space-between;
   gap: 10rem;
 }
+
 .form-edit-usuario {
   margin-top: 100px;
   margin-left: 10%;
@@ -1292,7 +1326,6 @@ a {
   border-radius: 5px;
   font-size: 1em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .form-edit-usuario button:hover {
@@ -1307,6 +1340,7 @@ a {
   height: 100%;
   background-color: #fff;
 }
+
 .imagem-edit-usuario img {
   width: 100%;
   height: 100%;
@@ -1314,3 +1348,113 @@ a {
 }
 
 /*fim editar dados do usuario*/
+
+/*css tela sobre a empresa*/
+.sobre-empresa {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  align-items: center;
+}
+
+.historia-empresa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.historia-empresa p {
+  margin-right: 10%;
+  margin-left: 10%;
+  text-align: justify;
+  font-size: 15pt;
+}
+
+.titulo-sobre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-sobre img {
+  width: 100px;
+}
+
+.cultura-empresa {
+  display: flex;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+.cultura-empresa img {
+  width: 30%;
+}
+
+.textos-infor {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5%;
+}
+
+.textos-infor p {
+  text-align: justify;
+  font-size: 15pt;
+}
+
+.textos-infor h2 {
+  margin-bottom: 15px;
+}
+
+.imagem-fix {
+  height: 40vh;
+  background: url("/imagens/banner5.jpeg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipe {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.container-equipe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.equipe-imagem {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.equipe-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.equipe-imagem:hover img {
+  transform: scale(1.1);
+}
+
+/*fim tela sobre a empresa*/
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
